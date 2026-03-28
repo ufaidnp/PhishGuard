@@ -49,15 +49,15 @@ def predict():
     
     # 3. Model Prediction
     if model:
-        features_df = pd.DataFrame([features])
-        prediction_prob = model.predict_proba(features_df)[0]
-        prediction_class = model.predict(features_df)[0]
-        
-        is_phishing = prediction_class == 1
-        confidence = float(np.max(prediction_prob) * 100) # Ensure JSON serializable
-        
-        result_text = "Phishing" if is_phishing else "Legitimate"
-        details_text = f"Model predicts {result_text.lower()} based on specific URL characteristics."
+        # Simple rule-based detection (no ML)
+if "@" in url or len(url) > 75 or "login" in url:
+    result_text = "Phishing"
+    confidence = 80.0
+    details_text = "Rule-based detection: suspicious URL pattern."
+else:
+    result_text = "Legitimate"
+    confidence = 90.0
+    details_text = "URL appears safe based on simple checks."
     else:
         # Fallback mechanism
         is_phishing = features['suspicious_keywords_count'] > 0 or features['is_ip_address']

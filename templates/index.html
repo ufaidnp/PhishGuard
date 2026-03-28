@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard | AI Phishing Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Load Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>PhishGuard <span class="badge">AI</span></h1>
+            <p>Real-time machine learning threat intelligence</p>
+        </header>
+
+        <main class="scanner-card">
+            <form id="scan-form">
+                <div class="input-group">
+                    <input type="url" id="url-input" placeholder="https://example.com/login" required autocomplete="off">
+                    <button type="submit" id="analyze-btn">Analyze URL</button>
+                </div>
+            </form>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing threat vectors...</p>
+            </div>
+
+            <div id="results" class="hidden">
+                <div class="result-header" id="result-header">
+                    <h2 id="verdict"></h2>
+                    <div class="confidence" id="confidence-bar">
+                        <span>Confidence Score: <span id="confidence-score"></span>%</span>
+                        <div class="progress-bar"><div class="progress" id="progress-fill"></div></div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h3>Threat Analysis</h3>
+                    <p id="details-text"></p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-box">
+                            <h4>URL Characteristics</h4>
+                            <ul id="url-features-list"></ul>
+                        </div>
+                        <div class="feature-box">
+                            <h4>Content Heuristics</h4>
+                            <ul id="content-features-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="error" class="hidden error-message"></div>
+        </main>
+        
+        <footer>
+            <p>&copy; PhishGuard Open Source Intelligence</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

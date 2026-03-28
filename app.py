@@ -48,7 +48,7 @@ def predict():
     features['domain_age'] = check_domain_age(ext.domain)
     
     # 3. Model Prediction
-    if model:
+  
         # Simple rule-based detection (no ML)
 if "@" in url or len(url) > 75 or "login" in url:
     result_text = "Phishing"
@@ -58,12 +58,11 @@ else:
     result_text = "Legitimate"
     confidence = 90.0
     details_text = "URL appears safe based on simple checks."
-    else:
         # Fallback mechanism
         is_phishing = features['suspicious_keywords_count'] > 0 or features['is_ip_address']
         result_text = "Phishing" if is_phishing else "Legitimate"
         confidence = 80.0
-        details_text = "Fallback rules applied. Model not found."
+        sdetails_text = "Fallback rules applied. Model not found."
     
     # 4. Optional Context: HTML content heuristics
     html_stats = analyze_html_content(url)

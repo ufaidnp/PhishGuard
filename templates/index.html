@@ -5,119 +5,136 @@
 <title>PhishGuard</title>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #020617, #0f172a);
-        overflow: hidden;
-        color: white;
-    }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-    /* 🔥 Animated Background */
-    body::before {
-        content: "";
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, #38bdf8 1px, transparent 1px);
-        background-size: 40px 40px;
-        animation: moveBg 20s linear infinite;
-        opacity: 0.1;
-    }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    color: white;
 
-    @keyframes moveBg {
-        from { transform: translate(0,0); }
-        to { transform: translate(-200px, -200px); }
-    }
+    /* 🔥 PERFECT CENTER FIX */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-    .container {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        text-align: center;
-    }
+/* 🔥 Animated Grid Background */
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, #38bdf8 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: moveBg 20s linear infinite;
+    opacity: 0.1;
+    z-index: 0;
+}
 
-    h1 {
-        font-size: 3rem;
-        color: #38bdf8;
-        text-shadow: 0 0 20px #38bdf8;
-    }
+@keyframes moveBg {
+    from { transform: translate(0,0); }
+    to { transform: translate(-200px, -200px); }
+}
 
-    /* 💎 Glass Card */
-    .card {
-        margin-top: 30px;
-        padding: 30px;
-        border-radius: 20px;
-        background: rgba(255,255,255,0.05);
-        backdrop-filter: blur(15px);
-        box-shadow: 0 0 30px rgba(56,189,248,0.2);
-        display: inline-block;
-        animation: fadeIn 1s ease-in-out;
-    }
+/* Container */
+.container {
+    text-align: center;
+    z-index: 1;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(30px);}
-        to { opacity: 1; transform: translateY(0);}
-    }
+/* Title */
+h1 {
+    font-size: 3rem;
+    color: #38bdf8;
+    text-shadow: 0 0 20px #38bdf8;
+    margin-bottom: 20px;
+}
 
-    input {
-        width: 320px;
-        padding: 12px;
-        border-radius: 10px;
-        border: none;
-        outline: none;
-        font-size: 16px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-    }
+/* Glass Card */
+.card {
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(56,189,248,0.2);
 
-    button {
-        margin-top: 15px;
-        padding: 12px 25px;
-        border: none;
-        border-radius: 10px;
-        font-size: 16px;
-        cursor: pointer;
-        background: linear-gradient(45deg, #38bdf8, #0ea5e9);
-        color: black;
-        font-weight: bold;
-        transition: 0.3s;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 
-    button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px #38bdf8;
-    }
+    animation: fadeIn 0.8s ease-in-out;
+}
 
-    .result-box {
-        margin-top: 25px;
-        padding: 20px;
-        border-radius: 15px;
-        display: none;
-        animation: fadeIn 0.5s ease-in-out;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-    .safe {
-        background: rgba(34,197,94,0.1);
-        box-shadow: 0 0 20px #22c55e;
-    }
+/* Input */
+input {
+    width: 320px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
 
-    .phishing {
-        background: rgba(239,68,68,0.1);
-        box-shadow: 0 0 20px #ef4444;
-    }
+/* Button */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #38bdf8, #0ea5e9);
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-    .loading {
-        margin-top: 15px;
-        color: #facc15;
-        animation: blink 1s infinite;
-    }
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #38bdf8;
+}
 
-    @keyframes blink {
-        50% { opacity: 0.5; }
-    }
+/* Result */
+.result-box {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+    min-width: 300px;
+}
 
+.safe {
+    background: rgba(34,197,94,0.1);
+    box-shadow: 0 0 20px #22c55e;
+}
+
+.phishing {
+    background: rgba(239,68,68,0.1);
+    box-shadow: 0 0 20px #ef4444;
+}
+
+/* Loading */
+.loading {
+    color: #facc15;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.5; }
+}
 </style>
 </head>
 
@@ -128,7 +145,6 @@
 
     <div class="card">
         <input type="text" id="urlInput" placeholder="Enter URL...">
-        <br>
         <button onclick="checkURL()">Scan Now</button>
 
         <div id="loading" class="loading"></div>
